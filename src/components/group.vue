@@ -2,7 +2,7 @@
     <div class="group">
         <template v-if="group">
             <div class="group__header  clearfix">
-                <h1 class="pull-left">{{group.Name}}</h1> 
+                <h1 class="pull-left">{{group.Name}}</h1>
                 <button class="btn pull-right" @click="showModal = true">Skift gruppe</button>
             </div>
             <div class="row">
@@ -10,9 +10,17 @@
                     <catalog :selectedOdds="selectedOdds"></catalog>
                 </div>
                 <div class="col-xs-12 col-sm-4">
-                    <groupTable :group="group"></groupTable>
+                    <couponItem 
+                        :coupon="item"
+                        v-if="item.GroupId == group.Id" 
+                        v-for="item in user.Coupons" 
+                        :key="item.Id">
+                    </couponItem>
                 </div>
             </div>
+
+            <!-- The Group Table Overview -->
+            <groupTable :group="group"></groupTable>
 
             <!-- The coupon -->
             <coupon :user="user.User" :selectedOdds="selectedOdds"></coupon>
@@ -22,13 +30,13 @@
                 <p slot="header">Skift gruppe</p>
                 <div slot="body">
                     <p>Vælg hvilken af dine grupper du vil se</p>
-            
-                    <router-link class="groups__link btn" 
+
+                    <router-link class="groups__link btn"
                         v-if="item.Id !== group.Id"
-                        :to="{path: '/' + item.Name + '/' + item.Id, params: {name: item.Name, id: item.Id}}" 
+                        :to="{path: '/' + item.Name + '/' + item.Id, params: {name: item.Name, id: item.Id}}"
                         :user="user"
                         :selectedOdds="selectedOdds"
-                        v-for="item in user.Groups" 
+                        v-for="item in user.Groups"
                         :key="item.Id">
 
                         <span class="groups__name">{{item.Name}}</span>
@@ -45,20 +53,21 @@
                     <template v-if="user.Groups.length == 3">
                         <small>Du kan maksimalt være medlem af 3 grupper.</small>
                     </template>
-                    
+
                 </div>
             </modal>
         </template>
-         
+
 
         <template v-if="!group">
-            <h1>No group found</h1> 
+            <h1>No group found</h1>
         </template>
     </div>
 </template>
 
 <script>
 import coupon from './coupon.vue'
+import couponItem from './couponItem.vue'
 import catalog from './catalog.vue'
 import modal from './modal.vue'
 import groupTable from './groupTable.vue'
@@ -74,6 +83,7 @@ export default {
     props: ["user", "selectedOdds"],
     components: {
         coupon,
+        couponItem,
         catalog,
         modal,
         groupTable
@@ -84,7 +94,7 @@ export default {
     beforeRouteUpdate (to, from, next) {
         setTimeout(() =>{
             this.getGroupData(to.params.id);
-            this.showModal = false;    
+            this.showModal = false;
             next();
         }, 300);
     },
@@ -102,7 +112,7 @@ export default {
                     this.group = item;
                     return;
                 }
-            } 
+            }
             return;
         }
     }
@@ -116,6 +126,7 @@ export default {
 .group {
 
     &__header{
+        margin-bottom: $default-spacing;
     }
 }
 </style>
