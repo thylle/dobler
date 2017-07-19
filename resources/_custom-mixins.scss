@@ -28,6 +28,14 @@
     font-family: $icons-font-family;
     content: "\e145";
 }
+@mixin icon-done() {
+    font-family: $icons-font-family;
+    content: "\e876";
+}
+@mixin icon-cross() {
+    font-family: $icons-font-family;
+    content: "\e5cd";
+}
 @mixin icon-arrow-up() {
     font-family: $icons-font-family;
     content: "\e316";
