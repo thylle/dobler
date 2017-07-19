@@ -42,7 +42,7 @@
 </template>
 
 <script>
-import hello from '../bower_components/hello/dist/hello.all.js';
+import hello from 'hellojs/dist/hello.all.js';
 import signup from './components/signup.vue'
 import modal from './components/modal.vue'
 
