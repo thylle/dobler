@@ -1,0 +1,41 @@
+﻿
+@import "_custom-variables.scss";
+
+// Core variables and mixins
+@import "3rd-party/libraries/bootstrap/variables";
+@import "3rd-party/libraries/bootstrap/mixins";
+
+// Reset and dependencies
+@import "3rd-party/libraries/bootstrap/normalize";
+@import "3rd-party/libraries/bootstrap/print";
+@import "3rd-party/libraries/bootstrap/glyphicons";
+
+// Core CSS
+@import "3rd-party/libraries/bootstrap/scaffolding";
+@import "3rd-party/libraries/bootstrap/type";
+@import "3rd-party/libraries/bootstrap/grid";
+@import "3rd-party/libraries/bootstrap/tables";
+@import "3rd-party/libraries/bootstrap/forms";
+@import "3rd-party/libraries/bootstrap/buttons";
+
+
+// Utility classes
+@import "3rd-party/libraries/bootstrap/utilities";
+@import "3rd-party/libraries/bootstrap/_responsive-utilities.scss";
+
+
+//Slimmage.js needs max-width to work for resizing images
+[data-slimmage],
+[data-slimmage-bg] {
+    max-width: 100%;
+}
+
+
+// Base
+@import "base/_base.scss";
+@import "base/_utilities.scss";
+@import "base/type/_type.scss";
+
+//Modules
+@import "modules/header/_header.scss";
+@import "modules/icons/_icons.scss";

@@ -1,0 +1,92 @@
+﻿$font-size-root:                    16px !default; //This is the root font-size, its used on html to make "rem" work // Change this and all font-sizes change 
+$default-spacing:                   20px !default;
+$nav-trigger-size:                  40px !default;
+
+
+/*Z Index*/
+$z-index-cookiebar:                 10 !default;
+$z-index-skiptolink:                1000 !default;
+
+
+/*COLORS*/
+$white:                             #fff !default;
+$black:                             #181818 !default;
+$green:                             #a1c469 !default;
+$red:                               #b96666 !default;
+
+$gray-darker:                       #333 !default;
+$gray-dark:                         #737373 !default;
+$gray:                              #ccc !default;
+$gray-light:                        #e5e5e5 !default;
+$gray-lighter:                      #f5f5f5 !default;
+
+$brand-error:                       $red !default;
+$brand-success:                     $green !default;
+
+$social-google:                     #de4c34 !default;
+$social-google-dark:                #ce3e26 !default;
+$social-facebook:                   #3b5998 !default;
+$social-facebook-dark:              #354f88 !default;
+
+$brand-primary:                     #009688 !default;
+$brand-primary-dark:                darken($brand-primary, 7%) !default;
+$brand-primary-darker:              darken($brand-primary, 14%) !default;
+$brand-primary-light:               lighten($brand-primary, 7%) !default;
+$brand-primary-lighter:             lighten($brand-primary, 14%) !default;
+
+$brand-secondary:                   #90A4AE !default;
+$brand-secondary-dark:              darken($brand-secondary, 7%) !default;
+$brand-secondary-darker:            darken($brand-secondary, 14%) !default;
+
+
+
+/* Scaffolding*/
+$body-bg:                           $white !default;
+$text-color:                        $gray-dark !default;
+$link-color:                        $brand-primary !default;
+$link-hover-color:                  $brand-primary-dark !default;
+$link-hover-decoration:             none !default;
+
+
+$grid-gutter-width:                 $default-spacing !default;
+
+
+/*FONTS*/
+$icons-font-family:                 "icomoon" !default;
+$icon-font-path:                    "/src/resources/fonts/bootstrap/" !default;
+$font-family-sans-serif:            "Open Sans", sans-serif !default;
+$font-family-alt:                   "Montserrat", sans-serif !default;
+$font-family-base:                  $font-family-sans-serif !default;
+
+$line-height-base:                  1.3 !default;
+$headings-line-height:              1.1em !default;
+$headings-font-weight:              400 !default;
+
+$font-size-base:                    $font-size-root !default;
+$font-size-large:                   18px !default; //This can not be rem before we use Bootstrap 4 - it's used somewhere else as px.
+$font-size-small:                   14px !default; //This can not be rem before we use Bootstrap 4 - it's used somewhere else as px.
+$font-size-xs:                      12px !default; //This can not be rem before we use Bootstrap 4 - it's used somewhere else as px.
+
+$font-size-title:                   3.3rem !default;
+$font-size-teaser:                  1.4rem !default;
+
+$font-size-h1:                      2.5rem !default;
+$font-size-h2:                      2rem !default;
+$font-size-h3:                      1.75rem !default;
+$font-size-h4:                      1.50rem !default;
+$font-size-h5:                      1.25rem !default;
+$font-size-h6:                      1.25rem !default;
+
+
+
+$border-radius-base:                0 !default;
+$border-radius-large:               0 !default;
+$border-radius-small:               0 !default;
+
+// Breakpoints min-widths
+$breakpoint-lg:                     1200px;
+$breakpoint-ipad-landscape:         1025px;
+$breakpoint-md:                     1020px;
+$breakpoint-sm:                     992px;
+$breakpoint-xs:                     768px;
+$breakpoint-xxs:                    480px;

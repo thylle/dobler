@@ -1,0 +1,40 @@
+@import "../../_custom-variables.scss";
+@import "../../_custom-mixins.scss";
+
+.header{
+    @include clearfix;
+    display: flex;
+    padding: $default-spacing;
+    color: $white;
+    background: $brand-primary;
+
+    &__logo{
+        flex-grow: 1;
+    }
+
+    &__user{
+        flex-grow: 1;
+    }
+
+    &__actions{
+    }
+
+    a{
+        color: $white;
+
+        &:hover{
+            color: $white;
+            text-decoration: underline;
+        }
+    }
+
+    button{
+        background: none;
+
+        &:hover{
+            color: $white;
+            text-decoration: underline;
+            background: none;
+        }
+    }
+}

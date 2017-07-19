@@ -1,0 +1,62 @@
+﻿/* Unlike _base.scss, this is specific utilities/helpers you have to add to your elements
+ * Used for
+ * * Extending on existing content
+ * References:
+ *    Resources\3rd-party\libraries\bootstrap\_utility.scss */
+@import "../_custom-variables.scss";
+@import "../_custom-mixins.scss";
+
+
+.equal-height{
+    @include equal-height-row;
+}
+
+.align-vertically{
+    @include align-vertically;
+}
+
+.canvas-keep-aspect{
+    float: left;
+    width: 100%;
+}
+
+
+//no margin
+.m0,
+.no-margin{
+    margin: 0 !important;
+}
+
+//margin-top
+.mt {
+    margin-top: $default-spacing/2;
+
+    &1 {margin-top: $default-spacing;}
+    &2 {margin-top: $default-spacing*2;}
+}
+
+//margin-bottom
+.mb {
+    margin-bottom: $default-spacing / 2;
+
+    &1 {margin-bottom: $default-spacing;}
+    &2 {margin-bottom: $default-spacing*2;}
+}
+
+
+.boxed{
+    @include clearfix;
+    padding: $default-spacing $default-spacing 0;
+    background: $gray-lighter;
+    
+    &--primary{
+        color: $white;
+        background: $brand-primary;
+
+        a{
+            color: inherit;
+            text-decoration: underline;
+        }
+    }
+}
+

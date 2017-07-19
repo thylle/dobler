@@ -1,0 +1,172 @@
+﻿@import "_custom-variables.scss";
+@import "3rd-party/libraries/bootstrap/_mixins.scss";
+
+
+
+@mixin custom-font() {
+    font-family: $font-family-sans-serif;
+}
+@mixin title() {
+    font-size: $font-size-h1;
+    font-weight: bold;
+}
+
+@mixin equal-height-row() {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+@mixin align-vertically() {
+    display: flex;
+    align-items: center;
+}
+
+
+/*Icons*/
+@mixin icon-plus() {
+    font-family: $icons-font-family;
+    content: "\e145";
+}
+@mixin icon-arrow-up() {
+    font-family: $icons-font-family;
+    content: "\e316";
+}
+@mixin icon-arrow-down() {
+    font-family: $icons-font-family;
+    content: "\e313";
+}
+@mixin icon-arrow-left() {
+    font-family: $icons-font-family;
+    content: "\e314";
+}
+@mixin icon-arrow-right() {
+    font-family: $icons-font-family;
+    content: "\e315";
+}
+@mixin icon-facebook() {
+    font-family: $icons-font-family;
+    content: "\e900";
+}
+@mixin icon-google() {
+    font-family: $icons-font-family;
+    content: "\e901";
+}
+
+@mixin transition-std($target: all, $ease: ease-in-out, $duration: 200ms, $delay: 0ms) {
+    -webkit-transition: $target $ease $duration $delay;
+    -o-transition: $target $ease $duration $delay;
+    transition: $target $ease $duration $delay;
+}
+
+
+
+
+/// Mixin printing a linear-gradient
+/// as well as a plain color fallback
+/// and the `-webkit-` prefixed declaration
+/// @access public
+/// @param {Keyword | Angle} $direction - Linear gradient direction
+/// @param {Arglist} $color-stops - List of color-stops composing the gradient
+@mixin linear-gradient($direction, $color-stops...) {
+    background: $color-stops;
+    background: nth(nth($color-stops, 1), 1);
+    background: -webkit-linear-gradient(legacy-direction($direction), $color-stops);
+    background: linear-gradient($direction, $color-stops);
+}
+
+
+// (min) Breakpoints
+@mixin breakpoint($name) {
+    $lg: "(min-width: " + $breakpoint-lg + ")";
+    $ipad-landscape: "(min-width: " + $breakpoint-ipad-landscape + ")";
+    $md: "(min-width: " + $breakpoint-md + ")";
+    $sm: "(min-width: " + $breakpoint-sm + ")";
+    $xs: "(min-width: " + $breakpoint-xs + ")";
+    $xxs: "(min-width: " + $breakpoint-lg + ")";
+
+    @if $name == lg {
+        @media #{$lg} {
+            @content;
+        }
+    }
+    @else if $name == ipad-landscape {
+        @media #{$ipad-landscape} {
+            @content;
+        }
+    }
+    @else if $name == md {
+        @media #{$md} {
+            @content;
+        }
+    }
+    @else if $name == sm {
+        @media #{$sm} {
+            @content;
+        }
+    }
+    @else if $name == xs {
+        @media #{$xs} {
+            @content;
+        }
+    }
+    @else if $name == xxs {
+        @media #{$xxs} {
+            @content;
+        }
+    }
+}
+
+// (max) Breakpoints
+@mixin breakpoint-max($name) {
+    $lg: "(max-width: " + ($breakpoint-lg - 1px) + ")";
+    $ipad-landscape: "(max-width: " + ($breakpoint-ipad-landscape - 1px) + ")";
+    $md: "(max-width: " + ($breakpoint-md - 1px) + ")";
+    $sm: "(max-width: " + ($breakpoint-sm - 1px) + ")";
+    $xs: "(max-width: " + ($breakpoint-xs - 1px) + ")";
+    $xxs: "(max-width: " + ($breakpoint-xxs - 1px) + ")";
+
+    @if $name == lg {
+        @media #{$lg} {
+            @content;
+        }
+    }
+    @else if $name == ipad-landscape {
+        @media #{$ipad-landscape} {
+            @content;
+        }
+    }
+    @else if $name == md {
+        @media #{$md} {
+            @content;
+        }
+    }
+    @else if $name == sm {
+        @media #{$sm} {
+            @content;
+        }
+    }
+    @else if $name == xs {
+        @media #{$xs} {
+            @content;
+        }
+    }
+    @else if $name == xxs {
+        @media #{$xxs} {
+            @content;
+        }
+    }
+}
+
+/**
+ * Computes a CSS calc function that betweens a value from
+ * A to B over viewport-width A to viewport-width B.
+ * Requires a media query to cap the value at B.
+ */
+
+@function between($to, $from, $toWidth, $fromWidth) {
+    $slope: ($to - $from) / ($toWidth - $fromWidth);
+    $base: $from - $slope * $fromWidth;
+
+    @return calc(#{$base} + #{100vw * $slope});
+}
