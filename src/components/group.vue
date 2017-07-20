@@ -7,9 +7,13 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 col-sm-8">
+
+                    <!-- The Catalog - TODO Change name to Program  -->
                     <catalog :selectedOdds="selectedOdds"></catalog>
                 </div>
                 <div class="col-xs-12 col-sm-4">
+
+                    <!-- The Users Coupons for the Group  -->
                     <couponItem 
                         :coupon="item"
                         v-if="item.GroupId == group.Id" 
@@ -23,7 +27,7 @@
             <groupTable :group="group"></groupTable>
 
             <!-- The coupon -->
-            <coupon :user="user.User" :selectedOdds="selectedOdds"></coupon>
+            <coupon :user="user" :group="group" :selectedOdds="selectedOdds"></coupon>
 
             <!-- Modal popup to change group -->
             <modal v-if="showModal" @close="showModal = false">

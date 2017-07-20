@@ -17,6 +17,7 @@
       <main id="content">
         <signup v-if="!isAuthorized"></signup>
   
+        <!-- The Router View  -->
         <div v-if="isAuthorized">
           <router-view v-if="isReady" :user="user" :selectedOdds="selectedOdds"></router-view>
         </div>
