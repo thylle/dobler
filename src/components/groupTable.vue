@@ -28,7 +28,7 @@ export default {
 
       //Get users in this group
       this.$http
-        .get('http://doblerapi.dev/api/user/getUsersForGroup', { params: groupInfo })
+        .get('user/getUsersForGroup', { params: groupInfo })
         .then(response => {
           this.usersInGroup = response.body;
           console.log("users in this group", this.usersInGroup);

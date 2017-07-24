@@ -6,6 +6,7 @@ import router from './router.js'
 import VueResource from 'vue-resource'
 Vue.use(VueResource);
 Vue.config.productionTip = false
+Vue.http.options.root = 'http://doblerapi.dev/api';
 
 //
 // Dictionary for multi language - change language by changing the function parameter
