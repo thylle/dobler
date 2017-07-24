@@ -20,6 +20,7 @@ export function dictionary(locale) {
     da: {
         //Generics - used across the whole app 
         generic: {
+            save: "Gem",
             cancel: "Annuller",
             login: "Log ind",
             logout: "Log ud",
@@ -40,9 +41,12 @@ export function dictionary(locale) {
             changeGroup: "Skift gruppe",
             changeGroupDesc: "Vælg hvilken af dine grupper du vil se",
             maxNrOfGroups: "Du kan maksimalt være medlem af 3 grupper."
+        },
+
+        coupon:{
+            totalProfit: "Mulig gevinst"
         }
 
-        //Frontpage
     },
   }
 }
