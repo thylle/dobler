@@ -1,5 +1,5 @@
 <template>
-  <div class="coupon-item" tabindex="0" v-bind:class="{'won' : coupon.Won, 'done' : coupon.Done}">
+  <div class="coupon-item" tabindex="0" v-bind:class="{'won' : coupon.Won && coupon.Done, 'lost' : !coupon.Won && coupon.Done, 'done' : coupon.Done}">
 
     <!-- Header -->
     <div class="coupon-item__header">
@@ -60,8 +60,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../../resources/_custom-variables.scss";
-@import "../../resources/_custom-mixins.scss";
+@import "../../../resources/_custom-variables.scss";
+@import "../../../resources/_custom-mixins.scss";
 
 .coupon-item{
   margin-bottom: $default-spacing/2;
@@ -86,6 +86,15 @@ export default {
       }
     }
   }
+  &.lost{
+    .coupon-item__header{
+      background: $brand-error;
+
+      &-icon:before{
+        @include icon-cross;
+      }
+    }
+  }
 
   &__header{
     display: flex;
@@ -93,13 +102,7 @@ export default {
     padding: $default-spacing/2;
     text-transform: uppercase;
     color: $white;
-    background: $brand-error;
-
-    &-icon{
-      &:before{
-        @include icon-cross;
-      }
-    }
+    background: $gray-dark;
   }
 
   &__content{

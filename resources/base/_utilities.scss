@@ -79,6 +79,15 @@ button{
         opacity: 0.5;
     }
 
+    &.selected{
+        color: $white;
+        background: $brand-success;
+
+        &:hover{
+            background: $brand-success;
+        }
+    }
+
     &-primary{
         color: $white;
         background: $brand-primary;

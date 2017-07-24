@@ -1,13 +1,10 @@
 <template>
   <div>
-      <groups :user="user" :selectedOdds="selectedOdds"></groups>  
-      
-      <coupon :user="user.User" :selectedOdds="selectedOdds"></coupon>
+      <groups :user="user"></groups>  
   </div>
 </template>
 
 <script>
-import coupon from './coupon.vue'
 import groups from './groups.vue'
 
 export default {
@@ -17,9 +14,8 @@ export default {
       title: ""
     }
   },
-  props: ["user", "selectedOdds"],
+  props: ["user"],
   components: {
-    coupon,
     groups
   }
 }

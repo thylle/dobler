@@ -15,11 +15,11 @@
       </header>
   
       <main id="content">
-        <signup v-if="!isAuthorized"></signup>
+        <landingpage v-if="!isAuthorized"></landingpage>
   
         <!-- The Router View  -->
         <div v-if="isAuthorized">
-          <router-view v-if="isReady" :user="user" :selectedOdds="selectedOdds"></router-view>
+          <router-view v-if="isReady" :user="user"></router-view>
         </div>
       </main>
   
@@ -44,7 +44,7 @@
 
 <script>
 import hello from 'hellojs/dist/hello.all.js';
-import signup from './components/signup.vue'
+import landingpage from './components/landingpage.vue'
 import modal from './components/modal.vue'
 
 //Init hello.js with authenticate id's
@@ -66,12 +66,11 @@ export default {
       isAuthorized: false,
       authProvider: null,
       user: null,
-      selectedOdds: [],
       showModal: false
     }
   },
   components: {
-    signup,
+    landingpage,
     modal
   },
 
@@ -94,6 +93,7 @@ export default {
       //  continue to next page
       next()
     })
+
     //  hook the progress bar to finish after we've finished moving router-view
     this.$router.afterEach((to, from) => {
       this.$Progress.finish()
@@ -107,15 +107,18 @@ export default {
         this.isReady = true
       }, 300);
     },
+
     //Init Home is only called if the user is authenticated.
     initHome() {
       this.showModal = false;
       this.getUserData();
     },
+
     resetUserInfo() {
       this.user = [];
       this.showModal = false;
     },
+
     getUserData() {
 
       //Get user data from auth provider
@@ -128,7 +131,7 @@ export default {
         }
 
         //Get user data from database - if the user does not exists, the backend will create a new user for us.
-        this.$http.get('http://doblerapi.dev/api/user/getUserData', { params: userInfo })
+        this.$http.get('user/getUserData', { params: userInfo })
           .then(result => {
             let userData = result.body;
             console.log("user data: ", userData);
@@ -155,6 +158,7 @@ export default {
         this.validateAuthorization();
       });
     },
+
     logout() {
       hello(this.authProvider).logout().then(response => {
         window.location.href = "/";
@@ -166,6 +170,7 @@ export default {
         this.validateAuthorization();
       });
     },
+
     checkAuthSession(session) {
       if (session) {
         this.authProvider = session.network;
@@ -175,6 +180,7 @@ export default {
 
       return false;
     },
+
     validateAuthorization() {
       let googleAuth = hello('google').getAuthResponse();
       let facebookAuth = hello('facebook').getAuthResponse();

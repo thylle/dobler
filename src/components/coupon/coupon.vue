@@ -1,14 +1,14 @@
 <template>
     <div class="coupon">
         <div class="coupon__header">
-            Mulig gevinst:
-            <strong>{{profit}},-</strong>
+            <span v-lang.coupon.totalProfit></span>
+            <strong>{{totalProfit}},-</strong>
     
             <button class="coupon__trigger">+</button>
         </div>
     
         <div class="coupon__content">
-            <div class="coupon__odds" v-for="item in selectedOdds">
+             <div class="coupon__odds" v-for="item in selectedOdds">
                 <span>
                     {{item.hometeam}}
                     <strong>vs</strong> {{item.awayteam}}
@@ -17,13 +17,17 @@
                     <span class="coupon__content-label">{{item.key}}</span>
                     <span class="coupon__content-returns">{{item.value}}</span>
                 </div>
-            </div>
+            </div> 
         </div>
     
         <div class="coupon__footer">
             <input type="text" name="amount" v-model="amount" />
             <span class="coupon__returns">* {{totalReturns}}</span>
-            <button v-on:click="saveCoupon()">Gem</button>
+            <button 
+                :disabled="amount < amountMin || selectedOdds.length <= 0"
+                v-on:click="saveCoupon()" 
+                v-lang.generic.save>
+            </button>
         </div>
     </div>
 </template>
@@ -35,10 +39,19 @@ export default {
     data() {
         return {
             title: "Coupon",
-            amount: 0
+            amount: 0,
+            amountMin: 10
         }
     },
     computed: {
+        //Calculate the possible profit from the bet
+        totalProfit: function () {
+            let amount = this.amount >= 0 && this.amount !== "" ? this.amount : 0;
+            let result = parseFloat(this.totalReturns) * parseFloat(amount);
+
+            return result.toFixed(2);
+        },
+
         //Calculate what all the odds combined will have as returns
         totalReturns: function () {
             let returns = 0;
@@ -51,16 +64,12 @@ export default {
 
             return returns.toFixed(2);
         },
-
-        //Calculate the possible profit from the bet
-        profit: function () {
-            let amount = this.amount >= 0 && this.amount !== "" ? this.amount : 0;
-            let result = parseFloat(this.totalReturns) * parseFloat(amount);
-
-            return result.toFixed(2);
-        }
     },
     methods: {
+        couponAdded: function(){
+            this.$emit('couponAdded');
+            this.amount = 0;
+        },
         saveCoupon: function () {
             let odds = [];
 
@@ -71,7 +80,7 @@ export default {
                 odds.push(item);
             }
 
-            //Push coupon to user
+            //Create new coupon object
             let coupon = {
                 UserId: this.user.User.Id,
                 GroupId: this.group.Id,
@@ -79,27 +88,27 @@ export default {
                 TotalReturns: this.totalReturns
             };
 
-            console.log("save this coupon: ", coupon);
-
-            //Get users in this group
+            //Create new coupon object
             this.$http
-                .get('http://doblerapi.dev/api/user/GetAddCoupon', { params: coupon })
+                .get('user/CreateCoupon', {params: coupon})
                 .then(response => {
-                    this.usersInGroup = response.body;
-                    console.log("users in this group", this.usersInGroup);
-                }, response => {
-                    console.log("error getting users for group");
-                });
+                    let result = response.body;
+                    this.user.Coupons.push(result); //push the new coupon to the current users coupons 
+                    
+                    console.log("Added a new coupon", result);
 
-            
+                    this.couponAdded();
+                }, response => {
+                    alert("error saving new coupon");
+                });
         }
     }
 }
 </script>
 
 <style lang="scss" scoped>
-@import '../../resources/custom-variables.scss';
-@import '../../resources/custom-mixins.scss';
+@import '../../../resources/custom-variables.scss';
+@import '../../../resources/custom-mixins.scss';
 
 .coupon {
     transform: translateX(-50%);
@@ -118,6 +127,7 @@ export default {
         position: absolute;
         top: 0;
         right: 0;
+        color: $white;
         padding: $default-spacing/2 $default-spacing/1.5;
         background: $brand-primary-dark;
     }
@@ -139,6 +149,7 @@ export default {
         button {
             float: right;
             padding: $default-spacing/3;
+            color: $white;
             background: $brand-primary-dark;
         }
     }

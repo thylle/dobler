@@ -17,7 +17,7 @@
                     <couponItem 
                         :coupon="item"
                         v-if="item.GroupId == group.Id" 
-                        v-for="item in user.Coupons" 
+                        v-for="item in sortedCoupons" 
                         :key="item.Id">
                     </couponItem>
                 </div>
@@ -27,7 +27,8 @@
             <groupTable :group="group"></groupTable>
 
             <!-- The coupon -->
-            <coupon :user="user" :group="group" :selectedOdds="selectedOdds"></coupon>
+            <coupon :user="user" :group="group" :selectedOdds="selectedOdds" @couponAdded="reset()"></coupon>
+
 
             <!-- Modal popup to change group -->
             <modal v-if="showModal" @close="showModal = false">
@@ -51,10 +52,7 @@
                         v-lang.group.findNewGroup>
                     </button>
 
-                    <template v-if="user.Groups.length == 3">
-                        <small v-lang.group.maxNrOfGroups></small>
-                    </template>
-
+                    <small v-if="user.Groups.length == 3" v-lang.group.maxNrOfGroups></small>
                 </div>
             </modal>
         </template>
@@ -67,21 +65,22 @@
 </template>
 
 <script>
-import coupon from './coupon.vue'
-import couponItem from './couponItem.vue'
+import coupon from './coupon/coupon.vue'
+import couponItem from './coupon/couponItem.vue'
 import catalog from './catalog.vue'
-import modal from './modal.vue'
 import groupTable from './groupTable.vue'
+import modal from './modal.vue'
 
 export default {
     name: 'group',
     data() {
         return {
             group: null,
-            showModal: false
+            showModal: false,
+            selectedOdds: []
         }
     },
-    props: ["user", "selectedOdds"],
+    props: ["user"],
     components: {
         coupon,
         couponItem,
@@ -95,12 +94,25 @@ export default {
     beforeRouteUpdate (to, from, next) {
         setTimeout(() =>{
             this.getGroupData(to.params.id);
+            this.reset();
             this.showModal = false;
+
             next();
         }, 300);
     },
-
+    computed: {
+        sortedCoupons: function() {
+            this.user.Coupons.sort( (a, b) => {
+                return new Date(b.Created) - new Date(a.Created);
+            });
+            return this.user.Coupons;
+        }
+    },
     methods: {
+        reset(){
+            this.selectedOdds = [];
+            console.log("selected odds was reset...");
+        },
         getGroupData: function(id){
             var groupId = parseInt(id);
 
@@ -116,6 +128,7 @@ export default {
             }
             return;
         },
+
         findNewGroup: function(){
             //this.$router.go('/');
         }

@@ -50,7 +50,6 @@
 </template>
 
 <script>
-
 import helpers from '../helpers.js';
 
 export default {
@@ -68,9 +67,26 @@ export default {
       { "match_id": "175813", "selected": false, "open": false,"country_id": "169", "country_name": "England", "league_id": "62", "league_name": "Premier League", "match_date": "2017-05-06", "match_status": "FT", "match_time": "18:30", "match_hometeam_name": "Swansea City", "match_hometeam_score": "1", "match_awayteam_name": "Everton", "match_awayteam_score": "0", "match_live": "1", "goalscorer": [] }]
     }
   },
+  created: function () {
+    //Loop through games and add a custom generated odds array
+    for (let i = 0; i < this.games.length; i++) {
+      let game = this.games[i];
+      let matchId = game.match_id;
+
+      game.odds = helpers.createCustomOddsArray(matchId);
+    }
+  },
+
   methods: {
+    resetCatalog(){
+      for(let game in games){
+        item.selected = false;
+        item.open = false;
+      }
+    },
+
     //Method for odds buttons in the catalog to add odds to the "selectedOdds" and update the coupon.
-    toggleOdds: function (item, odds) {
+    toggleOdds (item, odds) {
       item.selected = !item.selected;
       odds.selected = !odds.selected;
 
@@ -97,16 +113,7 @@ export default {
 
       console.log("selected", this.selectedOdds);
     }
-  },
-  created: function () {
-    //Loop through games and add a custom generated odds array
-    for (let i = 0; i < this.games.length; i++) {
-      let game = this.games[i];
-      let matchId = game.match_id;
-
-      game.odds = helpers.createCustomOddsArray(matchId);
-    }
-  }
+  }  
 }
 </script>
 
@@ -161,7 +168,7 @@ export default {
     }
 
     &--quick-odds {
-      width: 200px;
+      width: 220px;
     }
 
     &--cta{
