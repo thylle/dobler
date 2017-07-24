@@ -60,3 +60,88 @@
     }
 }
 
+
+// BUTTONS
+button{
+    @extend .btn;
+}
+
+.btn{
+    color: $text-color;
+    background: $gray-light;
+    
+    &:hover{
+        background: $gray;
+    }
+
+    &:disabled{
+        cursor: default;
+        opacity: 0.5;
+    }
+
+    &-primary{
+        color: $white;
+        background: $brand-primary;
+       
+        &:hover{
+            background: $brand-primary-dark;
+        }
+    }
+    
+    
+    &--auth{
+        $auth-icon-size: 40px;
+
+        @include transition-std;
+        position: relative;
+        display: block;
+        width: 100%;
+        line-height: $auth-icon-size;
+        text-align: left;
+        padding: 0 $default-spacing/2;
+        padding-left: $auth-icon-size + ($default-spacing/2);
+        margin-bottom: $default-spacing;
+
+        &:hover{
+            color: $white;
+        }
+
+        &:before{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: $auth-icon-size;
+            height: 100%;
+            margin-right: $default-spacing/4;
+            text-align: center;
+        }
+    }
+
+    &--google{
+        color: $white;
+        background: $social-google;
+
+        &:hover{
+            background: $social-google-dark;
+        }
+
+        &:before{
+            @include icon-google;
+            background: $social-google-dark;
+        }
+    }
+
+    &--facebook{
+        color: $white;
+        background: $social-facebook;
+
+        &:hover{
+            background: $social-facebook-dark;
+        }
+
+        &:before{
+            @include icon-facebook;
+            background: $social-facebook-dark;
+        }
+    }
+}
