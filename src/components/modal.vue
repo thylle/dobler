@@ -19,7 +19,7 @@
           <div class="modal-footer">
             <slot name="footer">
               <button class="modal-default-button" @click="$emit('close')">
-                Annuller
+                <span v-lang.generic.cancel></span>
               </button>
             </slot>
           </div>
@@ -75,8 +75,10 @@ export default {
 .modal-body {
   margin: 20px 0;
 
-  a{
+  a,
+  .btn{
     display: block;
+    width: 100%;
     margin-bottom: $default-spacing/2;
   }
 

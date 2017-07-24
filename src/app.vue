@@ -9,8 +9,8 @@
         </div>
   
         <div class="header__actions">
-          <button id="show-modal" v-show="!isAuthorized" @click="showModal = true">Log ind</button>
-          <button class="" v-show="isAuthorized" @click="logout()">log out </button>
+          <button v-show="!isAuthorized" @click="showModal = true" v-lang.generic.login></button>
+          <button v-show="isAuthorized" @click="logout()" v-lang.generic.logout></button>
         </div>
       </header>
   
@@ -29,12 +29,12 @@
     </div>
   
     <modal v-if="showModal" @close="showModal = false">
-      <p slot="header">Log ind</p>
+      <p slot="header" v-lang.generic.login></p>
       <div slot="body">
-        <p>Du kan vælge at logge ind med Facebook eller Google+</p>
+        <p v-lang.generic.loginDesc></p>
   
-        <button class="btn--auth btn--facebook" v-show="!isAuthorized" @click="login('facebook')">Log ind med Facebook</button>
-        <button class="btn--auth btn--google" v-show="!isAuthorized" @click="login('google')">Log ind med Google+</button>
+        <button class="btn--auth btn--facebook" v-show="!isAuthorized" @click="login('facebook')" v-lang.generic.loginWithFacebook></button>
+        <button class="btn--auth btn--google" v-show="!isAuthorized" @click="login('google')" v-lang.generic.loginWithGoogle></button>
       </div>
     </modal>
   

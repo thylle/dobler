@@ -1,6 +1,6 @@
 <template>
   <div class="landingpage">
-    <h1>Sign-Up</h1>
+    <h1 v-lang.landingpage.title></h1>
   </div>
 </template>
 

@@ -1,6 +1,6 @@
 <template>
     <div class="groups">
-        <h2>Dine Grupper</h2>
+        <h2 v-lang.group.yourGroups></h2>
         <router-link class="groups__link" 
             :to="{path: '/' + item.Name + '/' + item.Id, params: {name: item.Name, id: item.Id}}" 
             :user="user"
@@ -11,7 +11,7 @@
             <span class="groups__name">{{item.Name}}</span>
         </router-link>
 
-        <button class="btn">Find gruppe</button>
+        <button class="btn" v-lang.group.findGroup></button>
     </div>
 </template>
 

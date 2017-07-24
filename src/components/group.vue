@@ -3,7 +3,7 @@
         <template v-if="group">
             <div class="group__header  clearfix">
                 <h1 class="pull-left">{{group.Name}}</h1>
-                <button class="btn pull-right" @click="showModal = true">Skift gruppe</button>
+                <button class="btn pull-right" @click="showModal = true" v-lang.group.changeGroup></button>
             </div>
             <div class="row">
                 <div class="col-xs-12 col-sm-8">
@@ -31,31 +31,28 @@
 
             <!-- Modal popup to change group -->
             <modal v-if="showModal" @close="showModal = false">
-                <p slot="header">Skift gruppe</p>
+                <p slot="header" v-lang.group.changeGroup></p>
                 <div slot="body">
-                    <p>Vælg hvilken af dine grupper du vil se</p>
+                    <p v-lang.group.changeGroupDesc></p>
 
                     <router-link class="groups__link btn"
                         v-if="item.Id !== group.Id"
                         :to="{path: '/' + item.Name + '/' + item.Id, params: {name: item.Name, id: item.Id}}"
-                        :user="user"
-                        :selectedOdds="selectedOdds"
                         v-for="item in user.Groups"
                         :key="item.Id">
 
-                        <span class="groups__name">{{item.Name}}</span>
+                        {{item.Name}}
                     </router-link>
 
                     <!-- If the user is only member of 1-2 groups - show a "find group" button -->
-                    <template v-if="user.Groups.length < 3">
-                        <router-link class="groups__link btn btn-primary mt1"
-                            :to="'#'">
-                            <span class="groups__name">Find en ny gruppe</span>
-                        </router-link>
-                    </template>
+                    <button class="groups__link btn btn-primary mt1"
+                        :disabled="user.Groups.length == 3"
+                        v-on:click="findNewGroup()"
+                        v-lang.group.findNewGroup>
+                    </button>
 
                     <template v-if="user.Groups.length == 3">
-                        <small>Du kan maksimalt være medlem af 3 grupper.</small>
+                        <small v-lang.group.maxNrOfGroups></small>
                     </template>
 
                 </div>
@@ -118,6 +115,9 @@ export default {
                 }
             }
             return;
+        },
+        findNewGroup: function(){
+            //this.$router.go('/');
         }
     }
 }
