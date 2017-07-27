@@ -8,3 +8,8 @@ export default {
   name: 'page404'
 }
 </script>
+
+<style lang="scss" scoped>
+@import '../../resources/custom-variables.scss';
+@import '../../resources/custom-mixins.scss';
+</style>

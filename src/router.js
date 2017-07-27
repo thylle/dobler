@@ -3,7 +3,9 @@ import router from 'vue-router'
 
 //Components
 import home from '@/components/home'
-import group from '@/components/group'
+import group from '@/components/group/group'
+import createGroup from '@/components/group/createGroup'
+import groupsOverview from '@/components/group/groupsOverview'
 import page404 from '@/components/page404'
 
 Vue.use(router)
@@ -22,6 +24,16 @@ const pageRouter = new router({
       path: '/:name/:id',
       name: 'group',
       component: group
+    },
+    {
+      path: '/opret-gruppe',
+      name: 'createGroup',
+      component: createGroup
+    },
+    {
+      path: '/find-gruppe',
+      name: 'groupsOverview',
+      component: groupsOverview
     },
     {
       path: '*',

@@ -447,6 +447,60 @@
     {
       "icon": {
         "paths": [
+          "M768 854v-428h-512v428h512zM768 342c46 0 86 38 86 84v428c0 46-40 84-86 84h-512c-46 0-86-38-86-84v-428c0-46 40-84 86-84h388v-86c0-72-60-132-132-132s-132 60-132 132h-82c0-118 96-214 214-214s214 96 214 214v86h42zM512 726c-46 0-86-40-86-86s40-86 86-86 86 40 86 86-40 86-86 86z"
+        ],
+        "attrs": [],
+        "isMulticolor": false,
+        "isMulticolor2": false,
+        "tags": [
+          "lock_open"
+        ],
+        "defaultCode": 59544,
+        "grid": 24
+      },
+      "attrs": [],
+      "properties": {
+        "ligatures": "lock_open",
+        "id": 472,
+        "order": 37,
+        "prevSize": 24,
+        "code": 59544,
+        "name": "lock_open"
+      },
+      "setIdx": 1,
+      "setId": 1,
+      "iconIdx": 472
+    },
+    {
+      "icon": {
+        "paths": [
+          "M768 854v-428h-512v428h512zM380 256v86h264v-86c0-72-60-132-132-132s-132 60-132 132zM768 342c46 0 86 38 86 84v428c0 46-40 84-86 84h-512c-46 0-86-38-86-84v-428c0-46 40-84 86-84h42v-86c0-118 96-214 214-214s214 96 214 214v86h42zM512 726c-46 0-86-40-86-86s40-86 86-86 86 40 86 86-40 86-86 86z"
+        ],
+        "attrs": [],
+        "isMulticolor": false,
+        "isMulticolor2": false,
+        "tags": [
+          "lock_outline"
+        ],
+        "defaultCode": 59545,
+        "grid": 24
+      },
+      "attrs": [],
+      "properties": {
+        "ligatures": "lock_outline",
+        "id": 473,
+        "order": 38,
+        "prevSize": 24,
+        "code": 59545,
+        "name": "lock_outline"
+      },
+      "setIdx": 1,
+      "setId": 1,
+      "iconIdx": 473
+    },
+    {
+      "icon": {
+        "paths": [
           "M512 768v-128l170 170-170 172v-128c-188 0-342-154-342-342 0-66 20-130 54-182l62 62c-20 36-30 76-30 120 0 142 114 256 256 256zM512 170c188 0 342 154 342 342 0 66-20 130-54 182l-62-62c20-36 30-76 30-120 0-142-114-256-256-256v128l-170-170 170-172v128z"
         ],
         "attrs": [],
@@ -655,7 +709,10 @@
         "baseline": 6.25,
         "whitespace": 50
       },
-      "embed": false
+      "embed": false,
+      "showSelector": false,
+      "noie8": true,
+      "ie7": false
     },
     "imagePref": {
       "prefix": "icon-",

@@ -18,6 +18,10 @@ p,ul{
     @include title;
 }
 
+small{
+    font-size: $font-size-xs;
+}
+
 blockquote {
     margin: 0 0 $default-spacing;
     padding: $default-spacing/2 $default-spacing;

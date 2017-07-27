@@ -26,7 +26,6 @@
 .no-margin{
     margin: 0 !important;
 }
-
 //margin-top
 .mt {
     margin-top: $default-spacing/2;
@@ -34,14 +33,28 @@
     &1 {margin-top: $default-spacing;}
     &2 {margin-top: $default-spacing*2;}
 }
-
 //margin-bottom
 .mb {
-    margin-bottom: $default-spacing / 2;
+    margin-bottom: $default-spacing/2;
 
     &1 {margin-bottom: $default-spacing;}
     &2 {margin-bottom: $default-spacing*2;}
 }
+//margin-right
+.mr {
+    margin-right: $default-spacing/2;
+
+    &1 {margin-right: $default-spacing;}
+    &2 {margin-right: $default-spacing*2;}
+}
+//margin-left
+.ml {
+    margin-left: $default-spacing/2;
+
+    &1 {margin-left: $default-spacing;}
+    &2 {margin-left: $default-spacing*2;}
+}
+
 
 
 .boxed{

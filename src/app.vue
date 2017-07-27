@@ -19,7 +19,7 @@
   
         <!-- The Router View  -->
         <div v-if="isAuthorized">
-          <router-view v-if="isReady" :user="user"></router-view>
+          <router-view v-if="isReady"></router-view>
         </div>
       </main>
   
@@ -65,7 +65,7 @@ export default {
       isReady: false,
       isAuthorized: false,
       authProvider: null,
-      user: null,
+      user: [],
       showModal: false
     }
   },
@@ -131,19 +131,20 @@ export default {
         }
 
         //Get user data from database - if the user does not exists, the backend will create a new user for us.
-        this.$http.get('user/getUserData', { params: userInfo })
+        this.$http.get('data/getUserData', { params: userInfo })
           .then(result => {
             let userData = result.body;
-            console.log("user data: ", userData);
 
             if (userData) {
-              this.user = userData;
+              this.$store.dispatch("getUser", {user: userData})
+              this.user = this.$store.getters.user
             }
 
             this.done();
           })
+          .catch((err) => console.error(err));
       }, e => {
-        console.log('Cant get user data... ', e.error.message);
+        alert('Cant get user data... ' + e.error.message);
       });
     },
 

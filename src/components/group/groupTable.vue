@@ -28,13 +28,12 @@ export default {
 
       //Get users in this group
       this.$http
-        .get('user/getUsersForGroup', { params: groupInfo })
+        .get('data/getUsersForGroup', { params: groupInfo })
         .then(response => {
           this.usersInGroup = response.body;
           console.log("users in this group", this.usersInGroup);
-        }, response => {
-          console.log("error getting users for group");
-        });
+        })
+        .catch((err) => console.error(err));
     }    
   }
 }

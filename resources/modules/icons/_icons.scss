@@ -25,6 +25,7 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+
 .icon-facebook:before {
   content: "\e900";
 }
@@ -73,6 +74,12 @@
 .icon-local_atm:before {
   content: "\e53e";
 }
+.icon-lock_open:before {
+  content: "\e898";
+}
+.icon-lock_outline:before {
+  content: "\e899";
+}
 .icon-sync:before {
   content: "\e627";
 }
@@ -94,3 +101,4 @@
 .icon-trending_up:before {
   content: "\e8e5";
 }
+

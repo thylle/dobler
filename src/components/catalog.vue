@@ -164,15 +164,17 @@ export default {
   &__column {
     &:first-child {
       flex-grow: 1;
-      width: 50%;
+      width: 60%;
     }
 
     &--quick-odds {
-      width: 220px;
+      width: 30%;
+      min-width: 210px;
     }
 
     &--cta{
-      width: 100px;
+      width: 10%;
+      min-width: 90px;
 
       button{
         width: 100%;

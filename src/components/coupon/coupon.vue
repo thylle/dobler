@@ -35,10 +35,11 @@
 <script>
 export default {
     name: "coupon",
-    props: ["user", "group", "selectedOdds"],
+    props: ["group", "selectedOdds"],
     data() {
         return {
             title: "Coupon",
+            user: this.$store.getters.user,
             amount: 0,
             amountMin: 10
         }
@@ -90,7 +91,7 @@ export default {
 
             //Create new coupon object
             this.$http
-                .get('user/CreateCoupon', {params: coupon})
+                .get('data/CreateCoupon', {params: coupon})
                 .then(response => {
                     let result = response.body;
                     this.user.Coupons.push(result); //push the new coupon to the current users coupons 

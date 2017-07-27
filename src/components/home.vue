@@ -1,20 +1,19 @@
 <template>
   <div>
-      <groups :user="user"></groups>  
+    <groups></groups>  
   </div>
 </template>
 
 <script>
-import groups from './groups.vue'
+import groups from './group/groups.vue'
 
 export default {
   name: 'home',
   data() {
     return {
-      title: ""
+      title: "",
     }
   },
-  props: ["user"],
   components: {
     groups
   }

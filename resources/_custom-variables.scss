@@ -43,6 +43,7 @@ $brand-secondary-darker:            darken($brand-secondary, 14%) !default;
 /* Scaffolding*/
 $body-bg:                           $white !default;
 $text-color:                        $gray-dark !default;
+$input-color:                       $text-color !default;
 $link-color:                        $brand-primary !default;
 $link-hover-color:                  $brand-primary-dark !default;
 $link-hover-decoration:             none !default;
@@ -53,7 +54,7 @@ $grid-gutter-width:                 $default-spacing !default;
 
 /*FONTS*/
 $icons-font-family:                 "icomoon" !default;
-$icon-font-path:                    "/src/resources/fonts/bootstrap/" !default;
+$icon-font-path:                    "../resources/fonts/bootstrap/" !default;
 $font-family-sans-serif:            "Open Sans", sans-serif !default;
 $font-family-alt:                   "Montserrat", sans-serif !default;
 $font-family-base:                  $font-family-sans-serif !default;

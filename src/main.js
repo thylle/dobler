@@ -2,6 +2,7 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import App from './app'
+import store from './store'
 import router from './router.js'
 import VueResource from 'vue-resource'
 Vue.use(VueResource);
@@ -40,6 +41,7 @@ Vue.use(require('vue-progressbar'), progressOptions)
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
+  store,
   router,
   template: '<app/>',
   components: { App }

@@ -36,11 +36,17 @@ export function dictionary(locale) {
 
         group:{
             yourGroups: "Dine grupper",
-            findGroup: "Find gruppe",
-            findNewGroup: "Find en ny gruppe",
-            changeGroup: "Skift gruppe",
+            createGroupButton: "Opret gruppe",
+            findGroupButton: "Find gruppe",
+            changeGroupTitle: "Skift gruppe",
+            changeGroupButton: "Skift gruppe",
             changeGroupDesc: "Vælg hvilken af dine grupper du vil se",
-            maxNrOfGroups: "Du kan maksimalt være medlem af 3 grupper."
+            maxNrOfGroups: "Du kan maksimalt være medlem af 3 grupper.",
+            joinGroupButton: "Bliv medlem",
+            leaveGroupButton: "Forlad gruppe",
+            userIsMemberDesc: "Du er medlem",
+            userIsNotMemberDesc: "Du er ikke medlem af denne gruppe.",
+            groupIsPrivateDesc: "Denne gruppe er privat, du skal have en invitation for at deltage.",
         },
 
         coupon:{
