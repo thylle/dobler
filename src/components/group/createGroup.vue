@@ -15,18 +15,22 @@
 </template>
 
 <script>
+import helpers from '../../helpers'
+
 export default {
     name: 'createGroup',
     data() {
         return {
-            user: this.$store.getters.user,
             groupName: '',
             groupIsPrivate: false
         }
     },
     computed:{
+        user() {
+            return this.$store.getters.user;
+        },
         maxGroupsReached(){
-            return this.user.Groups.length >= 3;
+            return helpers.maxGroupsReached(this.user);
         },
     },
     methods: {
@@ -44,15 +48,18 @@ export default {
                 })
                 .catch((err) => console.error(err));
         },
-        groupCreated(item){
+        groupCreated(group){
+
+            //Join the group - adds the new group to the store
+            this.$store.dispatch("joinGroup", { group: group })
 
             //Create router object
-            let formattedName = item.Name.replace(/\s+/g, '-').toLowerCase();            
+            let formattedName = group.Name.replace(/\s+/g, '-').toLowerCase();            
             let newGroupRoute = {
-                path: "/" + formattedName + "/" + item.Id,
+                path: "/" + formattedName + "/" + group.Id,
                 params: {
                     name: formattedName,
-                    id: item.Id
+                    id: group.Id
                 }
             }
 
