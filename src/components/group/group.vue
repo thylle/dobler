@@ -8,12 +8,12 @@
     
                 <div class="group__header-actions">
                     <!-- Join Group  -->
-                    <button class="btn btn-primary" v-if="!group.Private && !userIsMember" @click="joinGroup(group)">
+                    <button class="btn btn-primary" v-if="!group.Private && !userIsMember" :disabled="maxGroupsReached" @click="joinGroup(group)">
                         <span v-lang.group.joinGroupButton></span>
                     </button>
     
                     <!-- Leave Group  -->
-                    <button class="btn" v-show="!group.Private && userIsMember" @click="leaveGroup(group)">
+                    <button class="btn" v-show="userIsMember" @click="leaveGroup(group)">
                         <span v-lang.group.leaveGroupButton></span>
                     </button>
     
@@ -21,6 +21,9 @@
                     <button class="btn" @click="showModal = true">
                         <span v-lang.group.changeGroupButton></span>
                     </button>
+                    <p>
+                        <span v-if="maxGroupsReached" v-lang.group.maxGroupsReachedDesc></span>
+                    </p>
                 </div>
             </div>
     
@@ -64,7 +67,9 @@
                     </router-link>
 
                     <!-- If the user is only member of 1-2 groups - show a "find group" button -->
-                    <button class="groups__link btn btn-primary mt1" :disabled="maxGroupsReached" @click="findNewGroup()" v-lang.group.findGroupButton></button>
+                    <button class="groups__link btn btn-primary mt1" @click="findNewGroup()" v-lang.group.findGroupButton></button>
+
+                    <button class="btn btn-primary" :disabled="maxGroupsReached" v-on:click="createGroup()" v-lang.group.createGroupButton></button>
 
                     <small v-if="maxGroupsReached" v-lang.group.maxGroupsReachedDesc></small>
                 </div>
@@ -78,6 +83,7 @@
 </template>
 
 <script>
+import helpers from '../../helpers'
 import coupon from '../coupon/coupon.vue'
 import couponItem from '../coupon/couponItem.vue'
 import catalog from '../catalog.vue'
@@ -117,7 +123,7 @@ export default {
 
     computed: {
         maxGroupsReached(){
-            return this.user.Groups.length >= 3;
+            return helpers.maxGroupsReached(this.user);
         },
         sortedCoupons() {
             this.user.Coupons.sort((a, b) => {
@@ -152,7 +158,6 @@ export default {
         checkIfUserIsMember() {
             for (let i = 0; i < this.user.Groups.length; i++) {
                 let item = this.user.Groups[i];
-
                 if (item.Id === this.group.Id) {
                     this.group = item;
                     this.userIsMember = true;
@@ -166,6 +171,10 @@ export default {
 
         findNewGroup() {
             this.$router.push({ name: 'groupsOverview' });
+        },
+        
+        createGroup() {
+            this.$router.push({ name: 'createGroup' });
         },
 
         leaveGroup(group) {
@@ -219,6 +228,7 @@ export default {
         margin-bottom: $default-spacing;
 
         &-actions {
+            text-align: right;
             float: right;
         }
     }
