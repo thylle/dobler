@@ -43,6 +43,7 @@
 </template>
 
 <script>
+import config from './config';
 import hello from 'hellojs/dist/hello.all.js';
 import landingpage from './components/landingpage.vue'
 import modal from './components/modal.vue'
@@ -54,7 +55,7 @@ hello.init({
 }, {
     scope: 'email',
     display: 'popup',
-    redirect_uri: 'http://localhost:8080/'
+    redirect_uri: config.authRedirectUri
   }
 );
 

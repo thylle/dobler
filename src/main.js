@@ -2,18 +2,20 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import App from './app'
+import config from './config'
 import store from './store'
-import router from './router.js'
+import router from './router'
 import VueResource from 'vue-resource'
 Vue.use(VueResource);
 Vue.config.productionTip = false
-Vue.http.options.root = 'http://doblerapi.dev/api';
+Vue.http.options.root = config.apiUrl;
+
 
 //
 // Dictionary for multi language - change language by changing the function parameter
-import MultiLanguage from 'vue-multilanguage'
+import multiLanguage from 'vue-multilanguage'
 import {dictionary} from '../dictionary.js'
-Vue.use(MultiLanguage, dictionary("da"))
+Vue.use(multiLanguage, dictionary("da"))
 
 //
 // Moment.js
