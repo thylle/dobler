@@ -41,7 +41,7 @@ export function dictionary(locale) {
             changeGroupTitle: "Skift gruppe",
             changeGroupButton: "Skift gruppe",
             changeGroupDesc: "Vælg hvilken af dine grupper du vil se",
-            maxNrOfGroups: "Du kan maksimalt være medlem af 3 grupper.",
+            maxGroupsReachedDesc: "Du kan maksimalt være medlem af 3 grupper.",
             joinGroupButton: "Bliv medlem",
             leaveGroupButton: "Forlad gruppe",
             userIsMemberDesc: "Du er medlem",

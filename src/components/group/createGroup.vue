@@ -9,7 +9,8 @@
                 <input type="checkbox" v-model="groupIsPrivate" /> Privat gruppe
             </label>
         </div>
-        <button class="btn btn-primary" @click="createGroup()" v-lang.group.createGroupButton></button>
+        <button class="btn btn-primary" :disabled="maxGroupsReached" @click="createGroup()" v-lang.group.createGroupButton></button>
+        <span v-if="maxGroupsReached" v-lang.group.maxGroupsReachedDesc></span>
     </div>
 </template>
 
@@ -23,7 +24,11 @@ export default {
             groupIsPrivate: false
         }
     },
-
+    computed:{
+        maxGroupsReached(){
+            return this.user.Groups.length >= 3;
+        },
+    },
     methods: {
         createGroup() {
             let paramData = {
@@ -35,8 +40,24 @@ export default {
             this.$http.get('data/createGroup', { params: paramData })
                 .then(result => {
                     console.log("create group", paramData);
+                    this.groupCreated(result.body);
                 })
                 .catch((err) => console.error(err));
+        },
+        groupCreated(item){
+
+            //Create router object
+            let formattedName = item.Name.replace(/\s+/g, '-').toLowerCase();            
+            let newGroupRoute = {
+                path: "/" + formattedName + "/" + item.Id,
+                params: {
+                    name: formattedName,
+                    id: item.Id
+                }
+            }
+
+            //Redirect to group page
+            this.$router.push(newGroupRoute);
         }
     }
 }

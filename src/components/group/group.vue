@@ -64,9 +64,9 @@
                     </router-link>
 
                     <!-- If the user is only member of 1-2 groups - show a "find group" button -->
-                    <button class="groups__link btn btn-primary mt1" :disabled="user.Groups.length == 3" @click="findNewGroup()" v-lang.group.findGroupButton></button>
+                    <button class="groups__link btn btn-primary mt1" :disabled="maxGroupsReached" @click="findNewGroup()" v-lang.group.findGroupButton></button>
 
-                    <small v-if="user.Groups.length == 3" v-lang.group.maxNrOfGroups></small>
+                    <small v-if="maxGroupsReached" v-lang.group.maxGroupsReachedDesc></small>
                 </div>
             </modal>
         </template>
@@ -116,7 +116,10 @@ export default {
     },
 
     computed: {
-        sortedCoupons: function () {
+        maxGroupsReached(){
+            return this.user.Groups.length >= 3;
+        },
+        sortedCoupons() {
             this.user.Coupons.sort((a, b) => {
                 return new Date(b.Created) - new Date(a.Created);
             });
@@ -137,7 +140,10 @@ export default {
                 .get('data/getGroup', { params: { id: groupId } })
                 .then(response => {
                     this.group = response.body;
-                    this.checkIfUserIsMember();
+
+                    if(this.group){
+                        this.checkIfUserIsMember();
+                    }
                 })
                 .catch((err) => console.error(err));
         },

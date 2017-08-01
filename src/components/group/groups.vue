@@ -10,7 +10,7 @@
             {{item.Name}}
         </router-link>
 
-        <button class="btn btn-primary" v-on:click="createGroupLink()" v-lang.group.createGroupButton></button> 
+        <button class="btn btn-primary" v-on:click="createGroup()" v-lang.group.createGroupButton></button> 
         <button class="btn" v-on:click="findNewGroup()" v-lang.group.findGroupButton></button>
     </div>
 </template>
@@ -28,7 +28,7 @@ export default {
         findNewGroup(){
             this.$router.push({name: 'groupsOverview'});
         },
-        createGroupLink(){
+        createGroup(){
             this.$router.push({name: 'createGroup'});
         }
     }
