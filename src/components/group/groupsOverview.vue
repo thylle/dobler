@@ -2,7 +2,7 @@
   <div>
     <h1>find groups...</h1>
   
-    <div class="groups-overview ">
+    <div class="groups-overview">
       <router-link class="group-list-item  align-vertically" v-for="item in groups" :key="item.Id" :to="createGroupRoute(item)">
         <span>
           {{item.Name}}

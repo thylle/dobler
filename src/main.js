@@ -38,9 +38,7 @@ const progressOptions = {
 Vue.use(require('vue-progressbar'), progressOptions)
 
 
-
 // Init the app
-/* eslint-disable no-new */
 new Vue({
   el: '#app',
   store,
