@@ -2,7 +2,7 @@
   <div id="app">
     <div class="container">
       <header class="header">
-        <a class="header__logo" href="/">LOGO</a>
+        <router-link class="header__logo" to="/">LOGO</router-link>
   
         <div class="header__user" v-if="isReady">
           <div>{{user.User}}</div>
