@@ -1,4 +1,3 @@
-
 //Odds type: 1x2
 function quickOdds(odds){
     let result = [];
@@ -68,10 +67,19 @@ function overUnderOdds(odds){
     return result;
 }
 
-
+import config from './config';
 
 //Export for Vue Component
-module.exports = {
+export default {
+    //Check if the current user has reached his maximum number of groups.
+    maxGroupsReached: (user) => {
+        //If user is empty
+        if(Object.keys(user).length === 0 && user.constructor === Object){
+            return false
+        }
+        return user.Groups.length >= config.maxGroups
+    },
+
     createCustomOddsArray: (matchId) => {
         
         var customOddsArray = [];
