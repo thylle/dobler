@@ -5,8 +5,17 @@
     @include clearfix;
     display: flex;
     padding: $default-spacing;
-    color: $white;
-    background: $brand-primary;
+    color: $brand-primary;
+    background: $white;
+
+    a,{
+        color: $brand-primary;
+
+        &:hover{
+            color: $brand-primary-dark;
+            text-decoration: underline;
+        }
+    }
 
     &__logo{
         flex-grow: 1;
@@ -17,25 +26,5 @@
     }
 
     &__actions{
-    }
-
-    a{
-        color: $white;
-
-        &:hover{
-            color: $white;
-            text-decoration: underline;
-        }
-    }
-
-    button{
-        color: $white;
-        background: none;
-
-        &:hover{
-            color: $white;
-            text-decoration: underline;
-            background: none;
-        }
     }
 }

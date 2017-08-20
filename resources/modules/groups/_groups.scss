@@ -6,20 +6,37 @@
 }
 
 .group-list-item{
-    display: flex;
-    justify-content: space-between;
+    @include align-vertically;
     list-style: none;
     margin-bottom: $default-spacing/2;
-    padding: $default-spacing/2;
-    color: $brand-primary;
-    background: $gray-lighter;
-}
+    text-transform: uppercase;
+    font-size: $font-size-base;
+    line-height: 1em;
+    background: $brand-secondary;
 
-a.group-list-item,
-button.group-list-item{
     &:hover{
+        background: $brand-secondary;
+    }
+
+    &:after{
+        @include icon-arrow-right;
+        padding: $default-spacing/2;
         color: $white;
-        background: $brand-primary;
+    }
+
+    &__name{
+        flex-grow: 1;
+        padding: $default-spacing/2;
+        color: $white;
+        line-height: 1em;
+    }
+
+    &__info{
+        width: 100px;
+        padding: $default-spacing/2;
+        font-size: $font-size-small;
+        color: $brand-primary;
+        background: $brand-primary-light;
     }
 }
 

@@ -2,6 +2,8 @@
 $default-spacing:                   20px !default;
 $nav-trigger-size:                  40px !default;
 
+$cta-size:                          40px !default;
+
 
 /*Z Index*/
 $z-index-cookiebar:                 10 !default;
@@ -28,24 +30,24 @@ $social-google-dark:                #ce3e26 !default;
 $social-facebook:                   #3b5998 !default;
 $social-facebook-dark:              #354f88 !default;
 
-$brand-primary:                     #009688 !default;
-$brand-primary-dark:                darken($brand-primary, 7%) !default;
+$brand-primary:                     #193B3C !default;
+$brand-primary-dark:                #00373B !default;
 $brand-primary-darker:              darken($brand-primary, 14%) !default;
-$brand-primary-light:               lighten($brand-primary, 7%) !default;
-$brand-primary-lighter:             lighten($brand-primary, 14%) !default;
+$brand-primary-light:               #707E82 !default;
+//$brand-primary-lighter:             lighten($brand-primary, 14%) !default;
 
-$brand-secondary:                   #90A4AE !default;
+$brand-secondary:                   #EE3A45 !default;
 $brand-secondary-dark:              darken($brand-secondary, 7%) !default;
 $brand-secondary-darker:            darken($brand-secondary, 14%) !default;
 
 
 
 /* Scaffolding*/
-$body-bg:                           $white !default;
-$text-color:                        $gray-dark !default;
+$body-bg:                           $brand-primary !default;
+$text-color:                        $white !default;
 $input-color:                       $text-color !default;
-$link-color:                        $brand-primary !default;
-$link-hover-color:                  $brand-primary-dark !default;
+$link-color:                        $brand-secondary !default;
+$link-hover-color:                  $brand-secondary-dark !default;
 $link-hover-decoration:             none !default;
 
 
@@ -55,7 +57,7 @@ $grid-gutter-width:                 $default-spacing !default;
 /*FONTS*/
 $icons-font-family:                 "icomoon" !default;
 $icon-font-path:                    "../resources/fonts/bootstrap/" !default;
-$font-family-sans-serif:            "Open Sans", sans-serif !default;
+$font-family-sans-serif:            "Hind Guntur", sans-serif !default;
 $font-family-alt:                   "Montserrat", sans-serif !default;
 $font-family-base:                  $font-family-sans-serif !default;
 

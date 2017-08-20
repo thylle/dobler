@@ -1,13 +1,14 @@
 <template>
     <div class="groups">
-        <h2 v-lang.group.yourGroups></h2>
+        <h2 class="heading" v-lang.group.yourGroups></h2>
     
         <router-link class="group-list-item" :to="createGroupRoute(item)" v-for="item in user.Groups" :key="item.Id">
-            {{item.Name}}
+            <span class="group-list-item__name">{{item.Name}}</span>
+            <span class="group-list-item__info">#4 | 175,- 2k</span>
         </router-link>
     
-        <button class="btn btn-primary" :disabled="maxGroupsReached" v-on:click="createGroup()" v-lang.group.createGroupButton></button>
-        <button class="btn" v-on:click="findNewGroup()" v-lang.group.findGroupButton></button>
+        <button class="cta" :disabled="maxGroupsReached" v-on:click="createGroup()" v-lang.group.createGroupButton></button>
+        <button class="cta" v-on:click="findNewGroup()" v-lang.group.findGroupButton></button>
         <span v-if="maxGroupsReached" v-lang.group.maxGroupsReachedDesc></span>
     </div>
 </template>

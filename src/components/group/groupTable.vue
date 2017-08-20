@@ -3,9 +3,24 @@
     {{getUsers}}
 
     <p><strong>In this group: </strong></p>
-    <p class="mb" v-for="item in usersInGroup">
-      {{item.Name}}
-    </p>
+    <table class="table">
+      <thead>
+        <tr>
+          <td>#</td>
+          <td>Bruger</td>
+          <td>Bank</td>
+          <td>Runde</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(item, index) in usersInGroup" :key="item.Id">
+          <td>{{index+1}}</td>
+          <td>{{item.Name}}</td>
+          <td>{{calcDistanceToTop(item)}}</td>
+          <td>....</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </template>
 
@@ -30,11 +45,28 @@ export default {
       this.$http
         .get('data/getUsersForGroup', { params: groupInfo })
         .then(response => {
-          this.usersInGroup = response.body;
+          let data = response.body;
+          console.log(data.length);
+          if(data.length){
+            data = data.sort((a, b) => b.Bank - a.Bank);
+          }
+          this.usersInGroup = data;
           console.log("users in this group", this.usersInGroup);
         })
         .catch((err) => console.error(err));
     }    
+  },
+  methods:{
+    calcDistanceToTop(user){
+      var topUser = this.usersInGroup[0];
+
+      if(topUser.Id === user.Id){
+        return user.Bank
+      }
+      else{
+        return (user.Bank - topUser.Bank)
+      }
+    }
   }
 }
 </script>

@@ -13,13 +13,12 @@ body {
 }
 
 main{
-    padding: $default-spacing;
+    padding: $default-spacing*2 $default-spacing/2;
     min-height: 50vh;
 }
 
 footer{
     @include clearfix;
     margin-bottom: 200px; //Will be deleted
-    padding: $default-spacing $default-spacing 0;
-    background: $gray-lighter;
+    padding: $default-spacing $default-spacing/2 0;
 }
