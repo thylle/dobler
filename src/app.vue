@@ -1,19 +1,19 @@
 <template>
   <div id="app">
-    <div class="container">
-      <header class="header">
-        <router-link class="header__logo" to="/">LOGO</router-link>
-  
-        <div class="header__user" v-if="isReady">
-          <div>{{user.User}}</div>
-        </div>
-  
-        <div class="header__actions">
-          <button v-show="!isAuthorized" @click="showModal = true" v-lang.generic.login></button>
-          <button v-show="isAuthorized" @click="logout()" v-lang.generic.logout></button>
-        </div>
-      </header>
-  
+    <header class="header">
+      <router-link class="header__logo" to="/"><img src="./assets/dobler-logo.svg" height="34" alt="Dobler Logo"/></router-link>
+
+      <div class="header__user" v-if="isReady">
+        <div>{{user.User}}</div>
+      </div>
+
+      <div class="header__actions">
+        <button v-show="!isAuthorized" @click="showModal = true" v-lang.generic.login></button>
+        <button v-show="isAuthorized" @click="logout()" v-lang.generic.logout></button>
+      </div>
+    </header>
+    
+    <div class="container"> 
       <main id="content">
         <landingpage v-if="!isAuthorized"></landingpage>
   
@@ -137,8 +137,8 @@ export default {
             let userData = result.body;
 
             if (userData) {
-              this.$store.dispatch("getUser", {user: userData})
-              this.user = this.$store.getters.user
+              this.$store.commit("UPDATE_USER", userData)
+              this.user = this.$store.state.user
             }
 
             this.done();
