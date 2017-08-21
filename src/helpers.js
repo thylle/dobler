@@ -67,9 +67,12 @@ function overUnderOdds(odds){
     return result;
 }
 
+
+//Import global config
 import config from './config';
 
-//Export for Vue Component
+
+//Helpers is some functions that we re-use different places through the app.
 export default {
     //Check if the current user has reached his maximum number of groups.
     maxGroupsReached: (user) => {
@@ -80,8 +83,8 @@ export default {
         return user.Groups.length >= config.maxGroups
     },
 
+    //Create custom odds array for our odds program catalog
     createCustomOddsArray: (matchId) => {
-        
         var customOddsArray = [];
         customOddsArray.quickodds = [];
         customOddsArray.catalog = [];

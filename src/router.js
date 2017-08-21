@@ -3,6 +3,7 @@ import router from 'vue-router'
 
 //Components
 import home from '@/components/home'
+import test from '@/components/test'
 import group from '@/components/group/group'
 import createGroup from '@/components/group/createGroup'
 import groupsOverview from '@/components/group/groupsOverview'
@@ -19,6 +20,11 @@ const pageRouter = new router({
       path: '/',
       name: 'home',
       component: home
+    },
+    {
+      path: '/test',
+      name: 'test',
+      component: test
     },
     {
       path: '/:name/:id',
