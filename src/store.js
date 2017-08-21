@@ -1,19 +1,30 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import VueResource from 'vue-resource'
+import Services from './core/services'
 
 Vue.use(Vuex)
 Vue.use(VueResource);
 
 export default new Vuex.Store({
   state: {
-    user: [],
+    loading: true,
+    user: null,
     groups: [],
   },
   mutations: {
-    GET_USER(state, user) {
+    LOADING(state){
+      state.loading = true;
+    },
+    UPDATE_USER(state, user) {
       state.user = user;
-      console.log("store, get current user: ", state.user);
+      state.loading = false;
+      console.log("store, current user: ", user);
+    },
+    RESET_USER(state) {
+      state.user = null;
+      state.loading = false;
+      console.log("store, reset user");
     },
 
     //Group Mutations
@@ -46,10 +57,16 @@ export default new Vuex.Store({
   },
 
   actions: {
-    getUser({commit}, {user}){
-      commit('GET_USER', user)
+    loading({commit}){
+      commit("LOADING");
     },
 
+    updateUser({commit}, {user}){
+      commit('UPDATE_USER', user);
+    },
+    resetUser({commit}){
+      commit('RESET_USER');
+    },
     //Group Actions
     //Get all groups in the system
     //**TODO Performance when getting EVERYTHING???
