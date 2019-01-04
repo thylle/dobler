@@ -7,6 +7,7 @@ import test from '@/components/test'
 import group from '@/components/group/group'
 import createGroup from '@/components/group/createGroup'
 import groupsOverview from '@/components/group/groupsOverview'
+import catalogPage from '@/components/catalogPage'
 import page404 from '@/components/page404'
 
 Vue.use(router)
@@ -40,6 +41,11 @@ const pageRouter = new router({
       path: '/find-gruppe',
       name: 'groupsOverview',
       component: groupsOverview
+    },
+    {
+      path: '/catalogPage',
+      name: 'catalogPage',
+      component: catalogPage
     },
     {
       path: '*',

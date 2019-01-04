@@ -10,6 +10,7 @@
       </div>
   
       <div class="header__actions">
+        <a href="/catalog">catalog</a>
         <button v-show="!isAuthorized" @click="showModal = true" v-lang.generic.login></button>
         <button v-show="isAuthorized" @click="logout()" v-lang.generic.logout></button>
       </div>
